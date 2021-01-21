@@ -1,19 +1,18 @@
+variable "env" {
+  default = "dev"
+}
 variable "aws_region" {
-  description = "AWS default region"
-  default = "us-east-1"
+  type = string
 }
 
-variable "az" {
-  description = "Availability zone"
-  default = "us-east-1a"
+variable "availability_zone_names" {
+  type = list(string)
 }
 
 variable "ami_id" {
-  description = ""
-  default = "ami-0be2609ba883822ec"
+  type = string
 }
 
 variable "instance_type" {
-  description = "type of EC2 instance to provision."
-  default = "t2.micro"
+  type = string
 }

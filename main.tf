@@ -8,18 +8,18 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 resource "aws_instance" "ubuntu" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  availability_zone = var.az
+  availability_zone = var.availability_zone_names
   monitoring = true
   count = 2
 
   tags = {
-    Environment = "Dev"
+    Environment = var.env
   }
 }
 
@@ -28,6 +28,6 @@ resource "aws_s3_bucket" "bucket" {
   acl    = "private"
 
   tags = {
-    Environment = "Dev"
+    Environment = var.env
   }
 }
