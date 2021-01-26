@@ -1,7 +1,7 @@
 aws_region = "us-east-1"
-image_id = "ami-0be2609ba883822ec"
-availability_zone_names = [
+ami_id = "ami-0be2609ba883822ec"
+vpc_azs = [
   "us-east-1a",
-  "us-west-1c",
+  "us-east-1b"
 ]
 instance_type = "t2.micro"

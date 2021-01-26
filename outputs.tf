@@ -1,7 +1,11 @@
-output "public_dns" {
-  value = aws_instance.ubuntu[1].public_dns
+# Output variable definitions
+
+output "vpc_public_subnets" {
+  description = "IDs of the VPC's public subnets"
+  value       = module.vpc.public_subnets
 }
 
-output "instance_id" {
-  value = aws_instance.ubuntu[1].id
+output "ec2_instance_public_ips" {
+  description = "Public IP addresses of EC2 instances"
+  value       = module.ec2_instances.public_ip
 }
