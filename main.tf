@@ -17,14 +17,35 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "aws_security_group" "enable_http_ssh" {
+  name        = "enable_http_ssh"
+  description = "Allow HTTP and SSH inbound traffic"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_instance" "ubuntu" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  availability_zone = "us-east-1a"
-  monitoring = true
-  count = 1
-  tags = {
-    Environment = var.env
-  }
+  security_groups = [aws_security_group.enable_http_ssh.name]
 }
 
