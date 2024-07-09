@@ -1,7 +1,5 @@
 aws_region = "us-east-1"
 
-ami_id = "ami-04a81a99f5ec58529"
-
-instance_type = "t2.micro"
-
 vpc_id = "vpc-0cf490d9962d48c09"
+
+subnet_ids = [ "subnet-08d93eb780dd80c04",  "subnet-048b0f011c1aee43c" ]
